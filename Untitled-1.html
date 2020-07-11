@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>Page Title</title>
+    <script src="https://res.wx.qq.com/open/js/cloudbase/1.0.0/cloud.js">
+    </script>
+    <script>
+        cloud.init({
+                appid: 'wx3d0ca04dd3d4311a',
+                env: 'first-ej63h'
+            })
+    </script>
+    <script>
+        function lalala(){
+            const db=cloud.database({});
+            db.collection('kehu')
+                .get({
+                    success(res){
+                        var data = res.data;
+                        var ulHtml = document.createElement('ul');
+                        for(var i=0;i<data.length;i+=1){
+                            var liHtml = document.createElement('li');
+                            liHtml.innerText = JSON.stringify(data[i]);
+                            ulHtml.appendChild(liHtml);
+                        }
+                        document.getElementById('demo').appendChild(ulHtml);
+                    }
+                })
+                
+            
+        }
+    </script>
+</head>
+<body>
+    <button type='button' onclick='lalala()'>调用kehu表</button>
+</body>
+</html>
